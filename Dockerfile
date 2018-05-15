@@ -29,6 +29,9 @@ LABEL io.k8s.description="Fluentd container for collecting logs from other fluen
   name="fluentd-forwarder" \
   architecture=x86_64
 
+COPY rencredit-root-ca.cer /usr/local/share/ca-certificates/
+RUN update-ca-certificates
+
 # add files
 ADD run.sh fluentd.conf.template passwd.template fluentd-check.sh ${HOME}/
 ADD common-*.sh /tmp/
